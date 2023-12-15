@@ -1,9 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '../prisma/generated/client'
 
 const prismaClientSingleton = () => {
-  return new PrismaClient({
-    log: ['info']
-  })
+  return new PrismaClient()
 }
 
 declare global {
