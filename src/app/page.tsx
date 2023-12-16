@@ -19,10 +19,10 @@ export default function Home() {
       .catch(() => setIsverified(false))
   }
 
-  const notify = () => toast("Wow so easy !");
-
   const handleVerifyUser = async () => {
+    if(!isVerified) return toast.error('Prove que não é um robo!');
     if (!serverSelected) return toast.error('Selecione seu servidor');
+    if (login.length < 3) return toast.error('Digite seu login!');
     await toast.promise(
       verifyUser(serverSelected as "Fenix" | "Aegir", login),
       {
@@ -89,13 +89,13 @@ export default function Home() {
                 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100' placeholder='Ex: Micka153'
                     onChange={(e: any) => setLogin(e.target.value)}
                   />
-                  <form>
+                  <div className='flex justify-center'>
                     <ReCAPTCHA
                       sitekey={String(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY)}
                       ref={recaptchaRef}
                       onChange={handleCaptchaSubmission}
                     />
-                  </form>
+                  </div>
                   <button className="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 
                   hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
                     onClick={handleVerifyUser}
@@ -108,7 +108,7 @@ export default function Home() {
                   </button>
                 </div>
               </div>
-              <div className="mt-32 space-y-4 text-gray-600 text-center sm:-mb-8">
+              <div className="mt-10 space-y-4 text-gray-600 text-center sm:-mb-8">
                 <p className="text-xs">Ao prosseguir, você concorda com nossos <a href="#" className="underline">Termos de uso</a> e confirme que você leu nosso <a href="#" className="underline">Declaração de privacidade e cookies</a>.</p>
                 <p className="text-xs">Este site é protegido pelo reCAPTCHA e pelo <a href="#" className="underline">Política de privacidade do Google</a> e <a href="#" className="underline">Termos de serviço</a>.</p>
               </div>
