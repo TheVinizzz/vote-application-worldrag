@@ -89,13 +89,13 @@ export default function Home() {
                 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100' placeholder='Ex: Micka153'
                     onChange={(e: any) => setLogin(e.target.value)}
                   />
-                  <div>
+                  <form>
                     <ReCAPTCHA
-                      sitekey="6LeTLzMpAAAAAMklEELtekCpeUOkxjSlWk2NY4tt"
+                      sitekey={String(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY)}
                       ref={recaptchaRef}
                       onChange={handleCaptchaSubmission}
                     />
-                  </div>
+                  </form>
                   <button className="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 
                   hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
                     onClick={handleVerifyUser}
