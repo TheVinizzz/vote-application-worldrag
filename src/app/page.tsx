@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import { verifyUser } from '@/hooks/useCheckUser'
 
 export default function Home() {
+  const [loading, setLoading] = useState<boolean>(false)
   const recaptchaRef = useRef<ReCAPTCHA>(null)
   const [isVerified, setIsverified] = useState<boolean>(false)
   const [serverSelected, setServerSelected] = useState<"Fenix" | "Aegir" | undefined>(undefined)
@@ -20,16 +21,25 @@ export default function Home() {
   }
 
   const handleVerifyUser = async () => {
-    if(!isVerified) return toast.error('Prove que não é um robo!');
-    if (!serverSelected) return toast.error('Selecione seu servidor');
-    if (login.length < 3) return toast.error('Digite seu login!');
-    await toast.promise(
-      verifyUser(serverSelected as "Fenix" | "Aegir", login),
-      {
-        pending: 'Buscando Usuário',
-        success: 'Usuário encontrado com sucesso',
-        error: 'Usuário não encontrado, verifique seus dados!'
-      })
+    setLoading(true)
+    try {
+      if (!isVerified) return toast.error('Prove que não é um robo!');
+      if (!serverSelected) return toast.error('Selecione seu servidor');
+      if (login.length < 3) return toast.error('Digite seu login!');
+      await toast.promise(
+        verifyUser(serverSelected as "Fenix" | "Aegir", login),
+        {
+          pending: 'Buscando Usuário',
+          success: 'Usuário encontrado com sucesso',
+          error: 'Usuário não encontrado, verifique seus dados!'
+        })
+    }
+    catch {
+      return console.log("Error")
+    }
+    finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -64,7 +74,8 @@ export default function Home() {
                 </div>
                 <div className='flex gap-2'>
                   <button className={`group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 
-                    hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100 w-full ${serverSelected === "Fenix" && "border-blue-400"}`}
+                    hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100 w-full`}
+                    style={{borderColor: serverSelected === "Fenix" ? "rgb(96 165 250)" : ""}} 
                     onClick={() => setServerSelected("Fenix")}
                   >
                     <div className="relative flex items-center space-x-4 justify-center">
@@ -74,7 +85,8 @@ export default function Home() {
                     </div>
                   </button>
                   <button className={`group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 
-                    hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100 w-full ${serverSelected === "Aegir" && "border-blue-400"}`}
+                    hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100 w-full `}
+                    style={{borderColor: serverSelected === "Aegir" ? "rgb(96 165 250)" : ""}}
                     onClick={() => setServerSelected("Aegir")}
                   >
                     <div className="relative flex items-center space-x-4 justify-center">
@@ -99,6 +111,7 @@ export default function Home() {
                   <button className="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 
                   hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
                     onClick={handleVerifyUser}
+                    disabled={loading}
                   >
                     <div className="relative flex items-center space-x-4 justify-center">
                       <span className="block w-max font-semibold tracking-wide text-gray-700 text-sm transition duration-300 group-hover:text-blue-600 sm:text-base">
