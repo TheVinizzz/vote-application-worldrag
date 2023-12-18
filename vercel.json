@@ -2,15 +2,11 @@
     "crons": [
         {
             "path": "/api/routine/rankingbr",
-            "schedule": "0 1 * * *"
+            "schedule": "*/10 * * * *"
         },
         {
             "path": "/api/routine/rankingorg",
-            "schedule": "0 1 * * *"
-        },
-        {
-            "path": "/api/routine/resetlogs",
-            "schedule": "0 1 * * *"
+            "schedule": "*/10 * * * *"
         }
     ]
 }
