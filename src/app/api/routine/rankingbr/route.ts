@@ -57,7 +57,8 @@ export const GET = async (request: NextRequest) => {
             },
         });
 
-        const newString = data.map((val: string) => val.replace("http://", '').replace(".vote.worldrag.com/", ''))
+        const newString = data.map((val: string) => val.replace("http://", '').replace("https://", '').replace(".vote.worldrag.com/", ''))
+        
         const validVotes = votes.filter(val => newString.includes(val.idCode))
 
         const response = validVotes.forEach(async (val) => {

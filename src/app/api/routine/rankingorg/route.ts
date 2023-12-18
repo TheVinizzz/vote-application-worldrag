@@ -37,7 +37,7 @@ const runningRankingORG= async () => {
 		
 			return data;
 		  });
-		const rows = tableData.map((val: any) => String(val[3]).replace("http://", '').replace(".vote.wo...", ''))
+		const rows = tableData.map((val: any) => String(val[3]).replace("http://", '').replace("https://", '').replace(".vote.wo...", ''))
 
         browser.close();
 
