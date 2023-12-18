@@ -18,7 +18,7 @@ export const GET = async (request: NextRequest) => {
 }
 
 export const POST = async (req: Request) => {
-    const {user} = await req.json()
+    const {user, server} = await req.json()
     try {
 
         const dateCurrent= new Date();
@@ -36,7 +36,7 @@ export const POST = async (req: Request) => {
                 },
             },
         });
-        
+
         if(votes.length > 0) throw "Voto realizado antes das 24 horas"
 
         const voteLogResponse = await prisma.votesLog.findMany()
@@ -56,6 +56,9 @@ export const POST = async (req: Request) => {
         const userResponse = await prisma.user.create({
             data: {
                 user,
+                server,
+                validatedBR: false,
+                validatedORG: false,
                 idCode: String(voteAvailable.id)
             }
         })

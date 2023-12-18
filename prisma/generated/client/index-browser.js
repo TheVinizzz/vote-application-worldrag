@@ -111,6 +111,9 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   idCode: 'idCode',
   user: 'user',
+  server: 'server',
+  validatedBR: 'validatedBR',
+  validatedORG: 'validatedORG',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

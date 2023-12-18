@@ -5,21 +5,25 @@ generator client {
   provider = "prisma-client-js"
   output   = "./generated/client"
 }
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  idCode    String
-  user      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  idCode       String
+  user         String
+  server       String
+  validatedBR  Boolean
+  validatedORG Boolean
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model VotesLog {
-  id        String  @id  @default(cuid()) 
+  id        String   @id @default(cuid())
   inUse     Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

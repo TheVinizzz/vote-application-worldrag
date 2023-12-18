@@ -1,14 +1,20 @@
 import { NextRequest, NextResponse } from "next/server"
 import prisma from "../../../../../lib/db"
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import axios from "axios";
 
 
 const runningRankingORG= async () => {
     try {
-        const browser = await puppeteer.launch({
+        // const browser = await puppeteer.launch({
+        //     headless: "new",
+        //     args: ['--no-sandbox']
+        // });
 
-            args: ['--no-sandbox']
-        });
+        const browser = await puppeteer.connect({
+            browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.NEXT_PUBLIC_BLESS_TOKEN}`
+        })
+
         const page = await browser.newPage();
 
         await page.goto(`https://www.topragnarok.org/detalhar/uid5161/`);
@@ -32,6 +38,8 @@ const runningRankingORG= async () => {
 			return data;
 		  });
 		const rows = tableData.map((val: any) => String(val[3]).replace("http://", '').replace(".vote.wo...", ''))
+
+        browser.close();
 
         return rows
     }
@@ -61,6 +69,31 @@ export const GET = async (request: NextRequest) => {
 
         const newString = data
         const validVotes = votes.filter(val => newString.includes(val.idCode))
+
+        const response = validVotes.forEach(async (val) => {
+            if(val.validatedORG) return 
+            const params = new URLSearchParams();
+            params.append('servidor', val.server);
+            params.append('acao', '1');
+            params.append('login', val.user);
+            params.append('key', "cblkfjas;JOAFWwvqm.,.qcwqdp1294");
+            params.append('top', "2");
+            await axios.post('https://worldrag.com/webservice-vote.php', params, {
+            headers: { 'content-type': 'application/x-www-form-urlencoded' }})
+            const response = await prisma.user.update({
+                where: {
+                    id: val.id,
+                    user: val.user
+                },
+                data: {
+                    validatedORG: true,
+                },
+            })
+            return response
+        })
+
+        await Promise.all([response])
+        
         return Response.json({ message: "OK", votes, validVotes })
     }
     catch (err) {

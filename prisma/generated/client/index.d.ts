@@ -962,6 +962,9 @@ export namespace Prisma {
     id: number | null
     idCode: string | null
     user: string | null
+    server: string | null
+    validatedBR: boolean | null
+    validatedORG: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -970,6 +973,9 @@ export namespace Prisma {
     id: number | null
     idCode: string | null
     user: string | null
+    server: string | null
+    validatedBR: boolean | null
+    validatedORG: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -978,6 +984,9 @@ export namespace Prisma {
     id: number
     idCode: number
     user: number
+    server: number
+    validatedBR: number
+    validatedORG: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -996,6 +1005,9 @@ export namespace Prisma {
     id?: true
     idCode?: true
     user?: true
+    server?: true
+    validatedBR?: true
+    validatedORG?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1004,6 +1016,9 @@ export namespace Prisma {
     id?: true
     idCode?: true
     user?: true
+    server?: true
+    validatedBR?: true
+    validatedORG?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1012,6 +1027,9 @@ export namespace Prisma {
     id?: true
     idCode?: true
     user?: true
+    server?: true
+    validatedBR?: true
+    validatedORG?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1107,6 +1125,9 @@ export namespace Prisma {
     id: number
     idCode: string
     user: string
+    server: string
+    validatedBR: boolean
+    validatedORG: boolean
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1134,6 +1155,9 @@ export namespace Prisma {
     id?: boolean
     idCode?: boolean
     user?: boolean
+    server?: boolean
+    validatedBR?: boolean
+    validatedORG?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1142,6 +1166,9 @@ export namespace Prisma {
     id?: boolean
     idCode?: boolean
     user?: boolean
+    server?: boolean
+    validatedBR?: boolean
+    validatedORG?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -1154,6 +1181,9 @@ export namespace Prisma {
       id: number
       idCode: string
       user: string
+      server: string
+      validatedBR: boolean
+      validatedORG: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1553,6 +1583,9 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'Int'>
     readonly idCode: FieldRef<"User", 'String'>
     readonly user: FieldRef<"User", 'String'>
+    readonly server: FieldRef<"User", 'String'>
+    readonly validatedBR: FieldRef<"User", 'Boolean'>
+    readonly validatedORG: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -2719,6 +2752,9 @@ export namespace Prisma {
     id: 'id',
     idCode: 'idCode',
     user: 'user',
+    server: 'server',
+    validatedBR: 'validatedBR',
+    validatedORG: 'validatedORG',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -2764,16 +2800,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
+   * Reference to a field of type 'Boolean'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
   /**
-   * Reference to a field of type 'Boolean'
+   * Reference to a field of type 'DateTime'
    */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
@@ -2794,6 +2830,9 @@ export namespace Prisma {
     id?: IntFilter<"User"> | number
     idCode?: StringFilter<"User"> | string
     user?: StringFilter<"User"> | string
+    server?: StringFilter<"User"> | string
+    validatedBR?: BoolFilter<"User"> | boolean
+    validatedORG?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }
@@ -2802,6 +2841,9 @@ export namespace Prisma {
     id?: SortOrder
     idCode?: SortOrder
     user?: SortOrder
+    server?: SortOrder
+    validatedBR?: SortOrder
+    validatedORG?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2813,6 +2855,9 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     idCode?: StringFilter<"User"> | string
     user?: StringFilter<"User"> | string
+    server?: StringFilter<"User"> | string
+    validatedBR?: BoolFilter<"User"> | boolean
+    validatedORG?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }, "id">
@@ -2821,6 +2866,9 @@ export namespace Prisma {
     id?: SortOrder
     idCode?: SortOrder
     user?: SortOrder
+    server?: SortOrder
+    validatedBR?: SortOrder
+    validatedORG?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -2837,6 +2885,9 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"User"> | number
     idCode?: StringWithAggregatesFilter<"User"> | string
     user?: StringWithAggregatesFilter<"User"> | string
+    server?: StringWithAggregatesFilter<"User"> | string
+    validatedBR?: BoolWithAggregatesFilter<"User"> | boolean
+    validatedORG?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -2891,6 +2942,9 @@ export namespace Prisma {
   export type UserCreateInput = {
     idCode: string
     user: string
+    server: string
+    validatedBR: boolean
+    validatedORG: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2899,6 +2953,9 @@ export namespace Prisma {
     id?: number
     idCode: string
     user: string
+    server: string
+    validatedBR: boolean
+    validatedORG: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2906,6 +2963,9 @@ export namespace Prisma {
   export type UserUpdateInput = {
     idCode?: StringFieldUpdateOperationsInput | string
     user?: StringFieldUpdateOperationsInput | string
+    server?: StringFieldUpdateOperationsInput | string
+    validatedBR?: BoolFieldUpdateOperationsInput | boolean
+    validatedORG?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2914,6 +2974,9 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     idCode?: StringFieldUpdateOperationsInput | string
     user?: StringFieldUpdateOperationsInput | string
+    server?: StringFieldUpdateOperationsInput | string
+    validatedBR?: BoolFieldUpdateOperationsInput | boolean
+    validatedORG?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2922,6 +2985,9 @@ export namespace Prisma {
     id?: number
     idCode: string
     user: string
+    server: string
+    validatedBR: boolean
+    validatedORG: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2929,6 +2995,9 @@ export namespace Prisma {
   export type UserUpdateManyMutationInput = {
     idCode?: StringFieldUpdateOperationsInput | string
     user?: StringFieldUpdateOperationsInput | string
+    server?: StringFieldUpdateOperationsInput | string
+    validatedBR?: BoolFieldUpdateOperationsInput | boolean
+    validatedORG?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2937,6 +3006,9 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     idCode?: StringFieldUpdateOperationsInput | string
     user?: StringFieldUpdateOperationsInput | string
+    server?: StringFieldUpdateOperationsInput | string
+    validatedBR?: BoolFieldUpdateOperationsInput | boolean
+    validatedORG?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3015,6 +3087,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -3030,6 +3107,9 @@ export namespace Prisma {
     id?: SortOrder
     idCode?: SortOrder
     user?: SortOrder
+    server?: SortOrder
+    validatedBR?: SortOrder
+    validatedORG?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3042,6 +3122,9 @@ export namespace Prisma {
     id?: SortOrder
     idCode?: SortOrder
     user?: SortOrder
+    server?: SortOrder
+    validatedBR?: SortOrder
+    validatedORG?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3050,6 +3133,9 @@ export namespace Prisma {
     id?: SortOrder
     idCode?: SortOrder
     user?: SortOrder
+    server?: SortOrder
+    validatedBR?: SortOrder
+    validatedORG?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3091,6 +3177,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -3103,11 +3197,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type VotesLogCountOrderByAggregateInput = {
@@ -3131,16 +3220,12 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -3153,10 +3238,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -3182,6 +3263,11 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -3239,6 +3325,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -3251,19 +3345,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
 
