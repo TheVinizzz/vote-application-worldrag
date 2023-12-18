@@ -36,7 +36,7 @@ export const POST = async (req: Request) => {
                 },
             },
         });
-        console.log("data", votes)
+        
         if(votes.length > 0) throw "Voto realizado antes das 24 horas"
 
         const voteLogResponse = await prisma.votesLog.findMany()

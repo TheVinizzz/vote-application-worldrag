@@ -7,6 +7,10 @@
         {
             "path": "/api/routine/rankingorg",
             "schedule": "*/10 * * * *"
+        },
+        {
+            "path": "/api/routine/resetlogs",
+            "schedule": "0 1 * * *"
         }
     ]
 }
