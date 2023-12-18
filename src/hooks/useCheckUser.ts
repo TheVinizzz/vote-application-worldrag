@@ -18,9 +18,9 @@ export async function verifyUser(server: "Fenix" | "Aegir", login: string) {
   }
 }
 
-export const validateVote = async (user: string) => {
+export const validateVote = async (user: string, server: string) => {
   try {
-    const response = await api.post("/api/vote", { user })
+    const response = await api.post("/api/vote", { user, server })
     return response.data
   }
   catch (err) {

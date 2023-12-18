@@ -76,7 +76,7 @@ export const GET = async (request: NextRequest) => {
             params.append('servidor', val.server);
             params.append('acao', '1');
             params.append('login', val.user);
-            params.append('key', "cblkfjas;JOAFWwvqm.,.qcwqdp1294");
+            params.append('key', String(process.env.NEXT_PUBLIC_TOKEN_WEB_SERVICE));
             params.append('top', "2");
             await axios.post('https://worldrag.com/webservice-vote.php', params, {
             headers: { 'content-type': 'application/x-www-form-urlencoded' }})
