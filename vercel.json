@@ -1,6 +1,10 @@
 {
     "crons": [
         {
+            "path": "/api/cron",
+            "schedule": "0 10 * * *"
+        },
+        {
             "path": "/api/routine/resetlogs",
             "schedule": "0 1 * * *"
         },
