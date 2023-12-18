@@ -41,7 +41,7 @@ const runningRankingORG= async () => {
 }
 
 
-const GET = async (request: NextRequest) => {
+export const GET = async (request: NextRequest) => {
     try {
         const data = await runningRankingORG()
 
@@ -72,5 +72,3 @@ const GET = async (request: NextRequest) => {
         })
     }
 }
-
-export default GET

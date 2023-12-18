@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import prisma from "../../../../../lib/db"
 
-const GET = async () => {
+export const GET = async () => {
     try {
 
         const votes = await prisma.votesLog.findMany({
@@ -32,5 +32,3 @@ const GET = async () => {
         })
     }
 }
-
-export default GET
