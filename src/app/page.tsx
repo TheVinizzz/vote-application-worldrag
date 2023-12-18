@@ -4,7 +4,7 @@ import ReCAPTCHA from "react-google-recaptcha"
 import { verifyCaptcha } from "@/hooks/useRecaptcha"
 import { useRef, useState } from "react"
 import { toast } from 'react-toastify'
-import { verifyUser } from '@/hooks/useCheckUser'
+import { verifyUser, validateVote } from '@/hooks/useCheckUser'
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false)
@@ -32,6 +32,13 @@ export default function Home() {
           pending: 'Buscando Usuário',
           success: 'Usuário encontrado com sucesso',
           error: 'Usuário não encontrado, verifique seus dados!'
+        })
+      await toast.promise(
+        validateVote(login),
+        {
+          pending: 'Seu voto está sendo validado.',
+          success: 'Voto Validade Com Sucesso',
+          error: 'Você ja votou hoje, volte amanha!'
         })
     }
     catch {
@@ -75,7 +82,7 @@ export default function Home() {
                 <div className='flex gap-2'>
                   <button className={`group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 
                     hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100 w-full`}
-                    style={{borderColor: serverSelected === "Fenix" ? "rgb(96 165 250)" : ""}} 
+                    style={{ borderColor: serverSelected === "Fenix" ? "rgb(96 165 250)" : "" }}
                     onClick={() => setServerSelected("Fenix")}
                   >
                     <div className="relative flex items-center space-x-4 justify-center">
@@ -86,7 +93,7 @@ export default function Home() {
                   </button>
                   <button className={`group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 
                     hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100 w-full `}
-                    style={{borderColor: serverSelected === "Aegir" ? "rgb(96 165 250)" : ""}}
+                    style={{ borderColor: serverSelected === "Aegir" ? "rgb(96 165 250)" : "" }}
                     onClick={() => setServerSelected("Aegir")}
                   >
                     <div className="relative flex items-center space-x-4 justify-center">

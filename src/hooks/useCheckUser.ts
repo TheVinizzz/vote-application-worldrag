@@ -1,5 +1,6 @@
 "use client"
 
+import api from "@/services";
 import axios from "axios"
 
 export async function verifyUser(server: "Fenix" | "Aegir", login: string) {
@@ -13,6 +14,16 @@ export async function verifyUser(server: "Fenix" | "Aegir", login: string) {
   if (response.data.result) {
     return "success!"
   } else {
+    throw new Error("Usuario falhou")
+  }
+}
+
+export const validateVote = async (user: string) => {
+  try {
+    const response = await api.post("/api/vote", { user })
+    return response.data
+  }
+  catch (err) {
     throw new Error("Usuario falhou")
   }
 }

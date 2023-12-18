@@ -20,6 +20,25 @@ export const GET = async (request: NextRequest) => {
 export const POST = async (req: Request) => {
     const {user} = await req.json()
     try {
+
+        const dateCurrent= new Date();
+
+        const dateInitial = new Date(dateCurrent);
+
+        dateInitial.setHours(dateCurrent.getHours() - 24);
+
+        const votes = await prisma.user.findMany({
+            where: {
+                user,
+                createdAt: {
+                    gte: dateInitial,
+                    lte: dateCurrent
+                },
+            },
+        });
+        console.log("data", votes)
+        if(votes.length > 0) throw "Voto realizado antes das 24 horas"
+
         const voteLogResponse = await prisma.votesLog.findMany()
 
         if(voteLogResponse.length === 0) {
