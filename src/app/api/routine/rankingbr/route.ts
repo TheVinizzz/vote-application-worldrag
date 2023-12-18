@@ -31,7 +31,7 @@ const runningRankingBR = async () => {
 }
 
 
-export const GET = async (request: NextRequest) => {
+const GET = async (request: NextRequest) => {
     try {
         const data = await runningRankingBR()
 
@@ -62,3 +62,5 @@ export const GET = async (request: NextRequest) => {
         })
     }
 }
+
+export default GET
