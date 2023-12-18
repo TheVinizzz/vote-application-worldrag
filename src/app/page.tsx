@@ -12,6 +12,7 @@ export default function Home() {
   const [isVerified, setIsverified] = useState<boolean>(false)
   const [serverSelected, setServerSelected] = useState<"Fenix" | "Aegir" | undefined>(undefined)
   const [login, setLogin] = useState<string>("")
+  const [validCheck, setValidCheck] = useState<string>("false")
 
   async function handleCaptchaSubmission(token: string | null) {
     // Server function to verify captcha
@@ -33,13 +34,15 @@ export default function Home() {
           success: 'Usuário encontrado com sucesso',
           error: 'Usuário não encontrado, verifique seus dados!'
         })
-      await toast.promise(
+      const response = await toast.promise(
         validateVote(login),
         {
           pending: 'Seu voto está sendo validado.',
           success: 'Voto Validade Com Sucesso',
           error: 'Você ja votou hoje, volte amanha!'
         })
+      console.log("🚀 ~ file: page.tsx:44 ~ handleVerifyUser ~ response:", response)
+      setValidCheck(response.id)
     }
     catch {
       return console.log("Error")
