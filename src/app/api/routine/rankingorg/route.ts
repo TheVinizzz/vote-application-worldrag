@@ -43,7 +43,7 @@ export const GET = async (request: NextRequest) => {
                   });
                 const rows = tableData.map((val: any) => String(val[3]).replace("http://", '').replace("https://", '').replace(".vote.wo...", ''))
         
-                browser.close();
+                await browser.close();
         
                 return rows
             }
@@ -93,7 +93,7 @@ export const GET = async (request: NextRequest) => {
             return response
         })
 
-        Promise.all(response)
+        await Promise.all(response)
         
         return Response.json({ message: "OK", votes, validVotes })
     }

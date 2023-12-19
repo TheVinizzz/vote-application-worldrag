@@ -33,7 +33,7 @@ export const GET = async (request: NextRequest) => {
                     return links;
                 }, sel);
         
-                browser.close();
+                await browser.close();
         
                 return data
             }
@@ -84,7 +84,7 @@ export const GET = async (request: NextRequest) => {
             return response
         })
 
-        Promise.all(response)
+        await Promise.all(response)
         
         return Response.json({ message: "OK", votes, validVotes })
     }
