@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import prisma from "../../../../../lib/db"
 import puppeteer from "puppeteer-core";
 import axios from "axios";
+export const dynamic = 'force-dynamic'
 
 
 export const GET = async (request: NextRequest) => {
@@ -50,7 +51,7 @@ export const GET = async (request: NextRequest) => {
                 console.log(error);
             }
         }
-        
+
         const data = await runningRankingORG()
 
         const dateCurrent= new Date();

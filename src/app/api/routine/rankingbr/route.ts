@@ -3,6 +3,8 @@ import prisma from "../../../../../lib/db"
 import puppeteer from "puppeteer-core";
 import axios from "axios";
 
+export const dynamic = 'force-dynamic'
+
 
 export const GET = async (request: NextRequest) => {
     try {
