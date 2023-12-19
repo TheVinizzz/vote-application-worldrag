@@ -31,12 +31,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.7.0
- * Query Engine version: 79fb5193cf0a8fdbef536e4b4a159cad677ab1b9
+ * Prisma Client JS version: 5.7.1
+ * Query Engine version: 0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5
  */
 Prisma.prismaVersion = {
-  client: "5.7.0",
-  engine: "79fb5193cf0a8fdbef536e4b4a159cad677ab1b9"
+  client: "5.7.1",
+  engine: "0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -148,12 +148,13 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
-  "clientVersion": "5.7.0",
-  "engineVersion": "79fb5193cf0a8fdbef536e4b4a159cad677ab1b9",
+  "clientVersion": "5.7.1",
+  "engineVersion": "0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "mysql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -163,7 +164,8 @@ const config = {
     }
   },
   "inlineSchema": "Ly8gVGhpcyBpcyB5b3VyIFByaXNtYSBzY2hlbWEgZmlsZSwKLy8gbGVhcm4gbW9yZSBhYm91dCBpdCBpbiB0aGUgZG9jczogaHR0cHM6Ly9wcmlzLmx5L2QvcHJpc21hLXNjaGVtYQoKZ2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgPSAicHJpc21hLWNsaWVudC1qcyIKICBvdXRwdXQgICA9ICIuL2dlbmVyYXRlZC9jbGllbnQiCn0KCmRhdGFzb3VyY2UgZGIgewogIHByb3ZpZGVyID0gIm15c3FsIgogIHVybCAgICAgID0gZW52KCJEQVRBQkFTRV9VUkwiKQp9Cgptb2RlbCBVc2VyIHsKICBpZCAgICAgICAgICAgSW50ICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkKICBpZENvZGUgICAgICAgU3RyaW5nCiAgdXNlciAgICAgICAgIFN0cmluZwogIHNlcnZlciAgICAgICBTdHJpbmcKICB2YWxpZGF0ZWRCUiAgQm9vbGVhbgogIHZhbGlkYXRlZE9SRyBCb29sZWFuCiAgY3JlYXRlZEF0ICAgIERhdGVUaW1lIEBkZWZhdWx0KG5vdygpKQogIHVwZGF0ZWRBdCAgICBEYXRlVGltZSBAdXBkYXRlZEF0Cn0KCm1vZGVsIFZvdGVzTG9nIHsKICBpZCAgICAgICAgU3RyaW5nICAgQGlkIEBkZWZhdWx0KGN1aWQoKSkKICBpblVzZSAgICAgQm9vbGVhbgogIGNyZWF0ZWRBdCBEYXRlVGltZSBAZGVmYXVsdChub3coKSkKICB1cGRhdGVkQXQgRGF0ZVRpbWUgQHVwZGF0ZWRBdAp9Cg==",
-  "inlineSchemaHash": "971c9fad5b560b32fc2f37ff23616ac21cd6ff38ff62091e624c13fc7cbf5895"
+  "inlineSchemaHash": "971c9fad5b560b32fc2f37ff23616ac21cd6ff38ff62091e624c13fc7cbf5895",
+  "noEngine": false
 }
 
 const fs = require('fs')
