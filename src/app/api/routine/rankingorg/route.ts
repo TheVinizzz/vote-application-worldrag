@@ -72,7 +72,7 @@ export const GET = async (request: NextRequest) => {
         const validVotes = votes.filter(val => newString.includes(val.idCode))
 
         const response = validVotes.map((val) => {
-            if(val.validatedORG) return 
+            if(val.validatedORG) return null
             const params = new URLSearchParams();
             params.append('servidor', val.server);
             params.append('acao', '1');
