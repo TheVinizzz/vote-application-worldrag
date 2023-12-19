@@ -4,48 +4,47 @@ import puppeteer from "puppeteer-core";
 import axios from "axios";
 
 
-const runningRankingBR = async () => {
-    try {
-        // const browser = await puppeteer.launch({
-        //     headless: "new",
-        //     args: ['--no-sandbox']
-        // });
-
-        const browser = await puppeteer.connect({
-            browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.NEXT_PUBLIC_BLESS_TOKEN}`,
-        })
-
-        const page = await browser.newPage();
-
-        await page.goto(`https://topragnarok.com.br/detail/23376`);
-
-        const sel = ".flex-grow.pl-2.overflow-hidden"
-
-        const data = await page.evaluate((sel) => {
-            let elements: any = Array.from(document.querySelectorAll(sel));
-            let links = elements.map((element: any) => {
-                return element.innerText
-            })
-            return links;
-        }, sel);
-
-        browser.close();
-
-        return data
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
-
-
 export const GET = async (request: NextRequest) => {
     try {
+        const runningRankingBR = async () => {
+            try {
+                // const browser = await puppeteer.launch({
+                //     headless: "new",
+                //     args: ['--no-sandbox']
+                // });
+        
+                const browser = await puppeteer.connect({
+                    browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.NEXT_PUBLIC_BLESS_TOKEN}`,
+                })
+        
+                const page = await browser.newPage();
+        
+                await page.goto(`https://topragnarok.com.br/detail/23376`);
+        
+                const sel = ".flex-grow.pl-2.overflow-hidden"
+        
+                const data = await page.evaluate((sel) => {
+                    let elements: any = Array.from(document.querySelectorAll(sel));
+                    let links = elements.map((element: any) => {
+                        return element.innerText
+                    })
+                    return links;
+                }, sel);
+        
+                browser.close();
+        
+                return data
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+
         const data = await runningRankingBR()
 
         const dateCurrent= new Date();
-
         const dateInitial = new Date(dateCurrent);
+
         dateInitial.setHours(dateCurrent.getHours() - 24);
 
         const votes = await prisma.user.findMany({
@@ -61,7 +60,7 @@ export const GET = async (request: NextRequest) => {
         
         const validVotes = votes.filter(val => newString.includes(val.idCode))
 
-        const response = validVotes.forEach(async (val) => {
+        const response = validVotes.map((val) => {
             if(val.validatedBR) return 
             const params = new URLSearchParams();
             params.append('servidor', val.server);
@@ -69,9 +68,9 @@ export const GET = async (request: NextRequest) => {
             params.append('login', val.user);
             params.append('key', String(process.env.NEXT_PUBLIC_TOKEN_WEB_SERVICE));
             params.append('top', "1");
-            await axios.post('https://worldrag.com/webservice-vote.php', params, {
+            axios.post('https://worldrag.com/webservice-vote.php', params, {
             headers: { 'content-type': 'application/x-www-form-urlencoded' }})
-            const response = await prisma.user.update({
+            const response = prisma.user.update({
                 where: {
                     id: val.id,
                     user: val.user
@@ -83,7 +82,7 @@ export const GET = async (request: NextRequest) => {
             return response
         })
 
-        await Promise.all([response])
+        Promise.all(response)
         
         return Response.json({ message: "OK", votes, validVotes })
     }
