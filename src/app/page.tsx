@@ -147,7 +147,7 @@ export default function Home() {
                     title="Dynamic Embedded Content"
                     width="600"
                     height="100"
-                    src={`http://${validCheck}.vote.worldrag.com`}
+                    src={`https://${validCheck}.vote.worldrag.com`}
                     frameBorder="0"
                     allowFullScreen
                   ></iframe>
