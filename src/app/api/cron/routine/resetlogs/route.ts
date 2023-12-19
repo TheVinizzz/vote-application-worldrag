@@ -11,8 +11,8 @@ export const GET = async () => {
             },
         });
 
-        const reset = votes.forEach(async val => {
-            await prisma.votesLog.update({
+        const reset = votes.map(val => {
+            prisma.votesLog.update({
                 where: { id: val.id },
                 data: {
                     inUse: false
@@ -20,7 +20,7 @@ export const GET = async () => {
             })
         })
 
-        await Promise.all([reset])
+        Promise.all(reset)
 
         return Response.json({ message: "Logs foram resetados com sucesso" })
     }
