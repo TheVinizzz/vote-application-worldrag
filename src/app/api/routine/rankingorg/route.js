@@ -11,14 +11,19 @@ export const GET = async () => {
 
         const runningRaking = async() => {
             const $ = await request({
-                uri: "https://topragnarok.com.br/detail/23376",
+                uri: "https://www.topragnarok.org/detalhar/uid5161/",
                 transform: body => cheerio.load(body)
             })
     
             let listValues = []
-            const title = $(".flex-grow.pl-2.overflow-hidden")
-            title.each((i, div) => {
-                listValues.push($(div).text().trim().replace("http://", '').replace("https://", '').replace(".vote.worldrag.com/", ''))
+            const title = $("table tr")
+            title.each((f, div) => {
+                const parentElement = $(div)
+                const firstThreeChildren = parentElement.children().slice(3, 4);
+                
+                firstThreeChildren.each((index, element) => {
+                    listValues.push($(element).text().trim().replace("http://", '').replace("https://", '').replace(".vote.wo...", '').replace(".vote.w...", ''))
+                });
             });
 
             return listValues

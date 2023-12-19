@@ -38,7 +38,7 @@ export default function Home() {
         validateVote(login, serverSelected),
         {
           pending: 'Seu voto está sendo validado.',
-          success: 'Voto Validade Com Sucesso',
+          success: 'Voto Validado Com Sucesso',
           error: 'Você ja votou hoje, volte amanha!'
         })
       setValidCheck(response.data.idCode)
